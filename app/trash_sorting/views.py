@@ -1,6 +1,7 @@
 import json
 from collections import OrderedDict
 import requests
+from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
@@ -9,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import SortSystem, Bin, Content, ContentType, Address
 
 def current_datetime(request):
-    return HttpResponse("lorem ipsum")
+    return render(request, "page_1.html", {"test": "test value"})
 
 def load_bins_data(bins_ids):
     bins_data = {}
@@ -69,9 +70,200 @@ def test(request):
         print(get_address_from_coords(request.POST["lat"], request.POST["lon"]))
     return HttpResponse("res")
 
+
+def tmp():
+    adresses =[
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10115", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10117", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10119", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10178", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10179", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10315", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10317", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10318", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10319", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10365", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10367", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10369", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10405", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10407", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10409", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10435", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10437", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10439", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10551", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10553", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10555", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10557", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10559", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10585", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10587", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10589", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10623", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10625", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10627", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10629", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10707", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10709", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10711", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10713", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10715", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10717", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10719", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10777", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10779", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10781", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10783", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10785", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10787", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10789", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10823", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10825", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10827", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "10829", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "11011", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12043", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12045", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12047", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12049", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12051", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12053", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12055", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12057", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12059", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12099", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12101", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12103", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12105", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12107", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12109", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12157", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12159", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12161", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12163", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12165", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12167", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12169", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12203", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12205", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12207", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12209", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12247", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12249", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12277", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12279", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12305", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12307", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12309", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12347", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12349", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12351", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12353", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12355", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12357", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12359", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12435", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12437", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12439", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12459", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12487", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12489", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12524", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12526", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12527", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12529", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12555", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12557", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12559", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12587", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12589", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12619", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12621", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12623", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12627", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12629", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12679", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12681", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12683", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12685", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12687", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "12689", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13051", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13053", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13055", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13057", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13059", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13086", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13088", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13089", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13125", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13127", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13129", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13156", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13158", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13159", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13187", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13189", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13347", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13349", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13351", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13353", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13355", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13357", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13359", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13403", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13405", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13407", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13409", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13435", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13437", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13439", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13465", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13467", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13469", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13503", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13505", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13507", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13509", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13581", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13583", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13585", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13587", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13589", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13591", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13593", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13595", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13597", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13599", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13627", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "13629", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14050", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14052", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14053", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14055", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14057", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14059", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14089", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14109", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14129", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14131", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14163", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14165", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14167", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14169", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14193", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14195", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14197", "country": "Germany", "country_code": "de"},
+        {"city": "Berlin", "ISO3166-2-lvl4": "DE-BE", "postcode": "14199", "country": "Germany", "country_code": "de"},
+    ]
+    for a in adresses:
+        ad = Address()
+        ad.address = json.dumps(a)
+        ad.parent_system = SortSystem.objects.get(name="Berlin")
+        ad.save()
+
 @csrf_exempt
 def search(request):
-
     any_name = "any"
     choice_other = "other"
     search_session_variable = ["user_choices", "types_done_ids", "bins_ids"]
@@ -209,7 +401,7 @@ def search(request):
             print(bins_keys)
             bin_name = str(bins_keys[0])
         res = "bin found: " + bin_name
-        return HttpResponse(res)
+        return render(request, "page_3.html", {"bin_name": bin_name})
 
     most_common_type = max(types, key=types.get)
     request.session["types_done_ids"].append(most_common_type.id)
@@ -226,4 +418,4 @@ def search(request):
     request.session["choices"].append(choice_other)
     print(request.session["choices"])
     res += str(request.session["choices"])
-    return HttpResponse(res)
+    return render(request, "page_2.html", {"choice_type": most_common_type, "choices": request.session["choices"]})
